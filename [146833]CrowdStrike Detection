@@ -1,0 +1,35 @@
+id: '146833'
+name: '[146833]CrowdStrike Detection'
+description: '''This alert detects a malicious activity detected from the CrowdStrike
+    Falcon Host agent'''
+severity: INFO,SUSPICIOUS
+status: Available
+requiredDataConnectors:
+-   connectorId: Splunk
+    dataTypes:
+    - crowdstrike
+queryFrequency: 4,19,34,49 * * * *
+queryPeriod: -60m@m;-0m@m
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+- TA0002
+relevantTechniques: Unknown
+query: "index=crowdstrike sourcetype=crowdstrike:alerts AND severity="Critical"
+entityMappings:
+-   entityType: N/A
+    fieldMappings:
+    -   identifier: Address
+        columnName: dest_dns
+version: '0'
+kind: Scheduled
+search_metadata:
+-   category: MALWARE
+    organization: Testing
+    rule_creator: cyber.punk
+    rule_updated: '2024-12-16T11:48:39+00:00'
+    search_annotations:
+    -   procedure: "**Triage Objetive**: here adding some steps to be done"
+        asset_type: endpoint
+        analytic_story: Malware Activity
+        analytic_story_category: Malware
